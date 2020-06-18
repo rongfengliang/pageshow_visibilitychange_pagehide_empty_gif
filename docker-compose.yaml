@@ -1,0 +1,9 @@
+version: "3"
+services: 
+  api:
+    image: openresty/openresty:alpine
+    volumes:
+    - "./nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf"
+    - "./index.html:/usr/local/openresty/nginx/html/index.html"
+    ports:
+    - "80:80"

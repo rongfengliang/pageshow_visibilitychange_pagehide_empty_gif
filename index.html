@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body  onload="cookieInit()" >
+    <div id="demapp" onclick="demo()">
+        this is a demo 
+        <input  text="demoapp" id="demoapp2">
+        <button onclick="demo4()">click</button>
+    </div>
+    <script>
+      window.onbeforeunload = closedemo;
+      window.addEventListener("pageshow",function(e){
+        var img = new Image(1,1);
+        var info = document.cookie;
+        var  type = "pageshow";
+        img.src = "/images/demoapp.gif?c="+info+"&type="+type;
+      })
+      document.addEventListener("visibilitychange", function(e){
+        var img = new Image(1,1);
+        var info = document.cookie+document.visibilityState
+        var  type = "visibilitychange";
+        img.src = "/images/demoapp.gif?c="+info+"&type="+type;  
+      })
+      window.addEventListener("pagehide",function(e){
+        var img = new Image(1,1);
+        var info = document.cookie;
+        var  type = "pagehide";
+        img.src = "/images/demoapp.gif?c="+info+"&type="+type;
+      })
+      function closedemo(){
+            var img = new Image(1,1);
+            var info = document.cookie;
+            var  type = "close";
+            img.src = "/images/demoapp.gif?c="+info+"&type="+type;
+      }
+      function cookieInit(){
+          document.cookie="dalong=demoapp"
+      }
+        function demo4(){
+            var val = document.getElementById("demoapp2")
+            //console.log(val.value)
+            alert(val.value)
+        }
+        function demo(){
+            console.log("first")
+        }
+
+        function demo2(){
+            console.log("body click")
+        }
+        document.addEventListener("click", function(e){
+            e.preventDefault()
+            console.log(e)
+            console.log(JSON.stringify(e))
+            var img = new Image(1,1);
+            var info = document.cookie
+            img.src = "/images/demoapp.gif?c="+info;
+        })
+    </script>
+</body>
+</html>
